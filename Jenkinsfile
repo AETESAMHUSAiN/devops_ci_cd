@@ -43,31 +43,31 @@ pipeline {
 			script {
 				if (env.BRANCH_NAME == 'master'){
 				sh """
-				sudo rm -rf /root/git_job_master
-				sudo mkdir /root/git_job_master
-				sudo cp -rvf . /root/git_job_master
+				rm -rf /root/git_job_master
+				mkdir /root/git_job_master
+				cp -rvf . /root/git_job_master
 
-				if sudo docker ps|grep master
+				if docker ps|grep master
 				then
-				sudo docker container stop master
-				sudo docker rm -f master
-				sudo docker run -dit -p 83:80 -v /root/git_job_master:/usr/local/apache2/htdocs --name master httpd
+				docker container stop master
+				docker rm -f master
+				docker run -dit -p 83:80 -v /root/git_job_master:/usr/local/apache2/htdocs --name master httpd
 				else
-				sudo docker run -dit -p 83:80 -v /root/git_job_master:/usr/local/apache2/htdocs --name master httpd
+				docker run -dit -p 83:80 -v /root/git_job_master:/usr/local/apache2/htdocs --name master httpd
 				fi
                 """
 			} else if (env.BRANCH_NAME == 'dev'){
 				sh """
-                sudo rm -rf /root/git_job
-				sudo mkdir /root/git_job
-				sudo cp -rvf . /root/git_job
-				if sudo docker ps|grep dev
+                rm -rf /root/git_job
+				mkdir /root/git_job
+				cp -rvf . /root/git_job
+				if docker ps|grep dev
 				then
-				sudo docker container stop dev
-				sudo docker rm -f dev
-				sudo docker run -dit -p 82:80 -v /root/git_job:/usr/local/apache2/htdocs --name dev httpd
+				docker container stop dev
+				docker rm -f dev
+				docker run -dit -p 82:80 -v /root/git_job:/usr/local/apache2/htdocs --name dev httpd
 				else
-				sudo docker run -dit -p 82:80 -v /root/git_job:/usr/local/apache2/htdocs --name dev httpd
+				docker run -dit -p 82:80 -v /root/git_job:/usr/local/apache2/htdocs --name dev httpd
 				fi
                 """
 				} 
