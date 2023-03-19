@@ -25,14 +25,14 @@ pipeline {
 									name: "Amsal Khan"
 								],
 							],
-							userRemoteConfigs: [[url: 'https://github.com/Amsal1/devops_ci_cd.git']]						
+							userRemoteConfigs: [[url: 'https://github.com/AETESAMHUSAiN/devops_ci_cd.git']]						
 						]
 						)
 					} else if (env.BRANCH_NAME == 'dev'){	
 						checkout([
 							$class: 'GitSCM', 
 							branches: [[name: '*/dev']], 
-							userRemoteConfigs: [[url: 'https://github.com/Amsal1/devops_ci_cd.git']]
+							userRemoteConfigs: [[url: 'https://github.com/AETESAMHUSAiN/devops_ci_cd.git']]
 							])
 						}
 					}
@@ -106,7 +106,7 @@ pipeline {
 			script {
 			if (env.BRANCH_NAME == 'master'){
 				withCredentials([usernamePassword(credentialsId: '434b0b23-9deb-4ee6-85d4-43c4c23513bb', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-				sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Amsal1/devops_ci_cd.git HEAD:master')
+				sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/AETESAMHUSAiN/devops_ci_cd.git HEAD:master')
 					}
 				} else if (env.BRANCH_NAME == 'dev'){
 				build wait: false, job: '../git_job_pipeline/master'
