@@ -79,7 +79,7 @@ pipeline {
 			script {
 				if (env.BRANCH_NAME == 'master'){
 				sh """
-				if [ `curl -o /dev/null -s -w "%{http_code}\n" http://3.139.105.245:83/index.html` = 200 ];
+				if [ `curl -o /dev/null -s -w "%{http_code}\n" http://18.191.212.232:83/index.html` = 200 ];
 				then
 				echo "Merge Successful"
 				else
@@ -88,7 +88,7 @@ pipeline {
                 """
 			} else if (env.BRANCH_NAME == 'dev'){
 				sh """
-				if [ `curl -o /dev/null -s -w "%{http_code}\n" http://3.139.105.245:82/index.html` = 200 ];
+				if [ `curl -o /dev/null -s -w "%{http_code}\n" http://18.191.212.232:82/index.html` = 200 ];
 				then
 				echo "Merge Successful"
 				else
